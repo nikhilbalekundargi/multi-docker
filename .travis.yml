@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t nikhilgb/react-test -f ./clinet/Dokerfile.dev ./client
+
+script:
+  - docker run nikhilgb/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t nikhilgb/multi-client ./client
+  - docker build -t nikhilgb/multi-nginx ./nginx
+  - docker build -t nikhilgb/multi-server ./server
+  - docker build -t nikhilgb/multi-worker ./worker
+  - echo "$docker_password" | docker login -u "docker_id" --password-stdin
+  - docker push nikhilgb/multi-client
+  - docker push nikhilgb/multi-nginx
+  - docker push nikhilgb/multi-server
+  - docker push nikhilgb/multi-worker
