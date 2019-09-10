@@ -14,7 +14,7 @@ after_success:
   - docker build -t nikhilgb/multi-server ./server
   - docker build -t nikhilgb/multi-worker ./worker
   - echo "$docker_password" | docker login -u "docker_id" --password-stdin
-  - docker push nikhilgb/multi-client
-  - docker push nikhilgb/multi-nginx
-  - docker push nikhilgb/multi-server
-  - docker push nikhilgb/multi-worker
+  - docker push nikhilgb/multi-client:latest
+  - docker push nikhilgb/multi-nginx:latest
+  - docker push nikhilgb/multi-server:latest
+  - docker push nikhilgb/multi-worker:latest
