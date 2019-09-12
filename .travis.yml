@@ -18,3 +18,17 @@ after_success:
   - docker push nikhilgb/multi-nginx:latest
   - docker push nikhilgb/multi-server:latest
   - docker push nikhilgb/multi-worker:latest
+
+deploy:
+  provider: elasticbeanstack
+  region: ap-south-1
+  app: multi-docker
+  env: multi-docker-env
+  bucket_name: elasticbeanstalk-ap-south-1-069653090426
+  bucket_path: docker-mutli
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
