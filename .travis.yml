@@ -20,7 +20,7 @@ after_success:
   - docker push nikhilgb/multi-worker:latest
 
 deploy:
-  provider: elasticbeanstack
+  provider: elasticbeanstalk
   region: ap-south-1
   app: multi-docker
   env: multi-docker-env
